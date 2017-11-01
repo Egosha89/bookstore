@@ -1,3 +1,6 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 const books = [
   {
     'id': '430610',
@@ -64,4 +67,31 @@ const books = [
   },
 ];
 
-export default books;
+class Sorting extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      displayedProducts: books,
+    };
+  }
+
+  sortingAlphabet = (event) => {
+    console.log(books[0].title.toUpperCase() < books[1].title.toUpperCase());
+
+    const displayedProducts = books.sort((a, b) =>
+      // По алфавиту
+      a.title.toUpperCase() < b.title.toUpperCase(),
+    );
+  }
+
+  render() {
+    return (
+      <div>
+        <h3 style={{ margin: 0 }}>Сортировка:</h3>
+        <span role="button" tabIndex="0" onClick={this.sortingAlphabet}>по алфавиту</span>
+      </div>
+    );
+  }
+}
+
+export default Sorting;
